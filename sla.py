@@ -61,19 +61,23 @@ def calc_info_gain(feature_name, train_data, label, class_list):
 
     return round(calc_total_entropy(train_data, label, class_list) - feature_info, 6) #calculating information gain by subtracting
 
+def motherfucker(data, n_colums):
+    lista = []
+    unique_goal_name = data.columns[ncols-2]
+    unique_goal = data[unique_goal_name].unique()
+    for i in range(0,data.shape[1] - 1):
+        column_name = data.columns[i]
+        #print(column_name)
+        x = calc_info_gain(column_name, data, unique_goal_name, unique_goal)
+        lista.append(x)
+    return lista
 
 with open("Datasets/weather.csv") as x:
     ncols = len(x.readline().split(','))
 data = pd.read_csv("Datasets/weather.csv", usecols=range(1,ncols))
 discretize(data)
 print(data)
-lista = []
 #Equivale a coluna da classe, o objetivo eh achar os possiveis token nele
-unique_goal_name = data.columns[ncols-2]
-unique_goal = data[unique_goal_name].unique()
-for i in range(0,data.shape[1] - 1):
-    column_name = data.columns[i]
-    print(column_name)
-    x = calc_info_gain(column_name, data, unique_goal_name, unique_goal)
-    lista.append(x)
+n_colums = len(data.columns)
+lista = motherfucker(data, n_colums)
 print(lista)
