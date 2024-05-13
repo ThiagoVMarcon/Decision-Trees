@@ -133,7 +133,7 @@ class DecisionTreeClassifier():
     # discretizes the numerical attributes of the DataFrame
     def discretize(self, data):
         num_of_columns = data.shape[1]
-        for column in range(num_of_columns):
+        for column in range(1, num_of_columns):
             try:
                 data.iloc[:, column] = data.iloc[:, column].astype(float)
                 self.do_Discretize(column, data)
