@@ -4,8 +4,12 @@ import pandas as pd
  #discretizes the numerical attributes of the DataFrame
 def discretize(data):
         num_of_columns = data.shape[1]
-        for column in range(num_of_columns):
+        for column in range(num_of_columns-1):
             try:
+                float(data.iloc[0,column])
+                #checks if value is False or True
+                if(data.iloc[0,column] == False or data.iloc[0,column] == True): #if yes then break, python treats these booleans as floats
+                    continue
                 data.iloc[0,column] = float(data.iloc[0,column])
                 do_Discretize(column, data)
             except ValueError:
@@ -75,6 +79,7 @@ def motherfucker(data, n_columns):
 with open("Datasets/weather.csv") as x:
     ncols = len(x.readline().split(','))
 data = pd.read_csv("Datasets/weather.csv", usecols=range(1,ncols))
+print(data)
 discretize(data)
 print(data)
 #Equivale a coluna da classe, o objetivo eh achar os possiveis token nele
