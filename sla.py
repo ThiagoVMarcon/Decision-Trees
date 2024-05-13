@@ -61,9 +61,9 @@ def calc_info_gain(feature_name, train_data, label, class_list):
 
     return round(calc_total_entropy(train_data, label, class_list) - feature_info, 6) #calculating information gain by subtracting
 
-def motherfucker(data, n_colums):
+def motherfucker(data, n_columns):
     lista = []
-    unique_goal_name = data.columns[ncols-2]
+    unique_goal_name = data.columns[n_columns-1]
     unique_goal = data[unique_goal_name].unique()
     for i in range(0,data.shape[1] - 1):
         column_name = data.columns[i]
